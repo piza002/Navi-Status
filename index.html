@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Navigation Device Check Status</title>
+        <script type="text/javascript" src="script.js"></script>
+        <script 
+            async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuf8EP85QQahHqLUeJs6A5bTdCBt3eMA4&callback=initMap">
+        </script>
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+    </head>
+    <body>
+        <div class="test">
+            <div id="map"></div>
+        </div>
+        &nbsp;
+        <div id="main">
+            <span id="timestamp"></span>
+        </div>
+        &nbsp;
+        <div class="status">
+            <span id="lbCheck" ></span>
+            <br>
+            <input type="button" id="btCheck" onclick="clearMap()" value="Check Status">
+            &nbsp;
+            <input type="button" id="btSetTime" onclick="openForm()" value="Set Time">
+            &nbsp;
+            <input type="button" id="btNoti" onclick="openTime()" value="Set Notification">
+        </div>
+        <div class="form-popup" id="popup">
+            <from class="form-container">
+                <label for="time"><b>Time</b></label>
+                <input type="text" id="tbTimeInterval" name="time" placeholder="Enter Time Interval">
+                <label for="pack"><b>Package</b></label>
+                <input type="text" id="tbPackage" name="pack" placeholder="Enter Package">
+                <input type="button" class="submit" id="btSubmit" onclick="setTime()" value="Submit">
+                <input type="button" class="cancle" id="btClose" onclick="closeForm()" value="Close">
+            </from>
+        </div>
+        <div class="form-popup" id="popuptime">
+            <from class="form-container">
+                <label for="email"><b>Admin Email</b></label>
+                <input type="text" id="tbEmail" name="email" placeholder="Enter Email Address">
+                <label for="Noti"><b>Notification status</b></label><br>
+                <label class="switch"><input type="checkbox" id="cbNoti" name="Noti"><span class="slider round"></span></label>
+                <br><br>
+                <input type="button" class="submit" id="btSubmit" onclick="" value="Submit">
+                <input type="button" class="cancle" id="btClose" onclick="closeTime()" value="Close">
+            </from>
+        </div>
+    </body>
+</html>

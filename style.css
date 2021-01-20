@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&display=swap');
+html,
+body 
+{
+    font-family: 'JetBrains Mono','Cordia News';
+    color: #ffffff;
+    background-color: #9921e8;
+    background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 75%);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+h7
+{
+  font-family: 'JetBrains Mono','Cordia News';
+  color: #000000;
+}
+#map 
+{
+    width: 40%;
+    padding-top:34% ;
+    margin-left: 0%;
+    border: 0px;
+    border-radius: 20px;
+}
+.test
+{
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#btCheck,#btSetTime,#btNoti
+{
+    font-family: 'JetBrains Mono','Cordia News';
+    padding:10px;
+    background-color: #ffffff ;
+	color: #000000;
+	border: 0px;
+	cursor:pointer;
+	border-radius: 5px;
+}
+.status,.settime,#main
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-popup
+{
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    left: 80%;
+    border: 3px solid #f1f1f1;
+    background-color: #ffffff;
+    z-index: 9;
+}
+.form-container 
+{
+    max-width: 300px;
+    color : #000000;
+    background-color: white;
+}
+.form-container input[type=text]
+{
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+.form-container input[type=button] 
+{
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+}
+.form-container .submit
+{
+    background-color: #4CAF50;
+}
+.form-container .cancle 
+{
+    background-color: red;
+}  
+.form-container input[type=button]:hover
+{
+    opacity: 1;
+}
+#btSetTime:hover,#btCheck:hover
+{
+    background-color: #DCDCDC;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 63px;
+  height: 34px;
+  top: 5px;
+  left: 5px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 27px;
+  width: 27px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(28px);
+  -ms-transform: translateX(28px);
+  transform: translateX(28px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

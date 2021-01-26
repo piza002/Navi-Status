@@ -150,12 +150,12 @@ async function openTime()
 {
   closeForm();
   document.getElementById("popuptime").style.display = "block";
-  await fetch("https://fierce-harbor-59590.herokuapp.com/statusnotify")
+  await fetch("https://fierce-harbor-59590.herokuapp.com/settingstatus")
     .then(res=>res.json())
     .then(function(data)
     {
       notibox=document.getElementById("cbNoti");
-      if(data["notify"]==0)
+      if(data["statusNotify"]==0)
       {
         notibox.checked=false;
       }
@@ -163,6 +163,7 @@ async function openTime()
       {
         notibox.checked=true;
       }
+      document.getElementById("tbEmail").value = data["setEmail"];
       notibox.setAttribute("onchange","changeNoti()");
     })
   document.getElementById("btNoti").setAttribute("onclick","closeTime()");
@@ -172,4 +173,11 @@ function closeTime()
 {
   document.getElementById("popuptime").style.display = "none";
   document.getElementById("btNoti").setAttribute("onclick","openTime()");
+}
+
+async function setEmail()
+{
+  await postdata("https://fierce-harbor-59590.herokuapp.com/setEmail",{"setEmail":document.getElementById("tbEmail").value});
+  alert("Complete");
+  closeTime();
 }

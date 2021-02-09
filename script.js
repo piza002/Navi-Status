@@ -1,6 +1,6 @@
 var node = [];
 var markersArray = [];
-async function initMap() 
+async function initMap()
 {
     map = await new google.maps.Map(document.getElementById("map"), {
       zoom: 15,
@@ -33,7 +33,7 @@ function checknode()
       addOffMarker(node[i],i);
     }
     const infowindow = new google.maps.InfoWindow({
-      content: "<h7>"+node[i].nameNode.toString()+"<br>"+"lat,lng"+node[i].lat.toString()+node[i].lng.toString()+"</h7>",
+      content: "<h7>"+node[i].nameNode.toString()+"<br>"+"lat,lng"+node[i].lat.toString()+","+node[i].lng.toString()+"</h7>",
     });
     markersArray[i].addListener("click", function() 
     {
@@ -79,7 +79,6 @@ function clearMap()
 
 async function openForm() 
 {
-  closeTime();
   document.getElementById("popup").style.display = "block";
   timein = document.getElementById("tbTimeInterval");
   pack = document.getElementById("tbPackage");
@@ -90,6 +89,22 @@ async function openForm()
     timein.value = data["time"];
     pack.value = data["package"];
   })
+  await fetch("https://fierce-harbor-59590.herokuapp.com/settingstatus")
+    .then(res=>res.json())
+    .then(function(data)
+    {
+      notibox=document.getElementById("cbNoti");
+      if(data["statusNotify"]==0)
+      {
+        notibox.checked=false;
+      }
+      else
+      {
+        notibox.checked=true;
+      }
+      document.getElementById("tbEmail").value = data["setEmail"];
+      notibox.setAttribute("onchange","changeNoti()");
+    })
   document.getElementById("btSetTime").setAttribute("onclick","closeForm()");
 }
 
@@ -146,34 +161,7 @@ async function changeNoti()
     console.log("0");
   }
 }
-async function openTime() 
-{
-  closeForm();
-  document.getElementById("popuptime").style.display = "block";
-  await fetch("https://fierce-harbor-59590.herokuapp.com/settingstatus")
-    .then(res=>res.json())
-    .then(function(data)
-    {
-      notibox=document.getElementById("cbNoti");
-      if(data["statusNotify"]==0)
-      {
-        notibox.checked=false;
-      }
-      else
-      {
-        notibox.checked=true;
-      }
-      document.getElementById("tbEmail").value = data["setEmail"];
-      notibox.setAttribute("onchange","changeNoti()");
-    })
-  document.getElementById("btNoti").setAttribute("onclick","closeTime()");
-}
 
-function closeTime() 
-{
-  document.getElementById("popuptime").style.display = "none";
-  document.getElementById("btNoti").setAttribute("onclick","openTime()");
-}
 
 async function setEmail()
 {

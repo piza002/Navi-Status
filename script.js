@@ -82,6 +82,7 @@ async function openForm()
   document.getElementById("popup").style.display = "block";
   timein = document.getElementById("tbTimeInterval");
   pack = document.getElementById("tbPackage");
+  setmail = document.getElementById("tbEmail");
   await fetch("https://fierce-harbor-59590.herokuapp.com/setting")
   .then(res=>res.json())
   .then(function(data)
@@ -102,7 +103,7 @@ async function openForm()
       {
         notibox.checked=true;
       }
-      document.getElementById("tbEmail").value = data["setEmail"];
+      setmail.value = data["setEmail"];
       notibox.setAttribute("onchange","changeNoti()");
     })
   document.getElementById("btSetTime").setAttribute("onclick","closeForm()");
@@ -138,8 +139,15 @@ async function setTime()
   if((timein.value != null) && (pack.value != null) && (Number.isInteger(parseInt(timein.value))) && (Number.isInteger(parseInt(pack.value))))
   {
     await postdata("https://fierce-harbor-59590.herokuapp.com/setting",{"timeinterval":parseInt(timein.value),"package":parseInt(pack.value)});
-    alert("Complete");
-    closeForm();
+    if(setmail.value != null)
+    {
+      setEmail();
+      closeForm();
+    }
+    else
+    {
+      alert("Please Enter Enail");
+    }
   }
   else
   {
@@ -167,5 +175,4 @@ async function setEmail()
 {
   await postdata("https://fierce-harbor-59590.herokuapp.com/setEmail",{"setEmail":document.getElementById("tbEmail").value});
   alert("Complete");
-  closeTime();
 }

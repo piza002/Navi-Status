@@ -79,6 +79,7 @@ function clearMap()
 
 async function openForm() 
 {
+  closeFormNode();
   document.getElementById("popup").style.display = "block";
   timein = document.getElementById("tbTimeInterval");
   pack = document.getElementById("tbPackage");
@@ -175,4 +176,37 @@ async function setEmail()
 {
   await postdata("https://fierce-harbor-59590.herokuapp.com/setEmail",{"setEmail":document.getElementById("tbEmail").value});
   alert("Complete");
+}
+
+function openFormNode() 
+{
+  closeForm();
+  document.getElementById("popup-node").style.display = "block";
+  document.getElementById("btReset").setAttribute("onclick","closeFormNode()");
+}
+
+function closeFormNode() 
+{
+  document.getElementById("popup-node").style.display = "none";
+  document.getElementById("btReset").setAttribute("onclick","openFormNode()");
+}
+
+async function resetdevice()
+{
+  node = document.getElementById("tbNode");
+  if(node.value!="")
+  {
+    if(Number.isInteger(parseInt(node.value)))
+    {
+      await postdata("https://fierce-harbor-59590.herokuapp.com/resetnode",{"node":node.value});
+    }
+    else
+    {
+      alert("Only Integer Number is allow");
+    }
+  }
+  else
+  {
+    alert("Please Enter Node Number");
+  }
 }

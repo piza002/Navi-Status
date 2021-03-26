@@ -175,7 +175,7 @@ async function changeNoti()
 async function setEmail()
 {
   await postdata("https://fierce-harbor-59590.herokuapp.com/setEmail",{"setEmail":document.getElementById("tbEmail").value});
-  alert("Complete");
+  alert("Setting Complete");
 }
 
 function openFormNode() 
@@ -199,6 +199,8 @@ async function resetdevice()
     if(Number.isInteger(parseInt(node.value)))
     {
       await postdata("https://fierce-harbor-59590.herokuapp.com/resetnode",{"node":node.value});
+      alert("Device is reseting");
+      closeFormNode();
     }
     else
     {

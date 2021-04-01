@@ -53,6 +53,7 @@ function addOffMarker(position,order)
     map,
     draggable: false,
     animation: google.maps.Animation.DROP,
+    icon: "https://www.img.in.th/images/ef56d54d4111bb8e9a9d12df78c48b8e.png"
   })
   
 }
@@ -64,7 +65,7 @@ function addOnMarker(position,order)
     map: map,
     draggable: false,
     animation: google.maps.Animation.DROP,
-    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+    icon: 'https://www.img.in.th/images/e461f9fb1a861216a7bfdb7e5cd977df.png'
   });
 }
 
@@ -84,6 +85,7 @@ async function openForm()
   timein = document.getElementById("tbTimeInterval");
   pack = document.getElementById("tbPackage");
   setmail = document.getElementById("tbEmail");
+  linetoken = document.getElementById("tbLineToken")
   await fetch("https://fierce-harbor-59590.herokuapp.com/setting")
   .then(res=>res.json())
   .then(function(data)
@@ -105,7 +107,9 @@ async function openForm()
         notibox.checked=true;
       }
       setmail.value = data["setEmail"];
+      linetoken.value = data["setTokenLine"];
       notibox.setAttribute("onchange","changeNoti()");
+
     })
   document.getElementById("btSetTime").setAttribute("onclick","closeForm()");
 }
@@ -143,11 +147,19 @@ async function setTime()
     if(setmail.value != null)
     {
       setEmail();
-      closeForm();
+      if(linetoken.value != null)
+      {
+        setLine();
+        closeForm();
+      }
+      else
+      {
+        alert("Please Enter Line Token")
+      }
     }
     else
     {
-      alert("Please Enter Enail");
+      alert("Please Enter Email");
     }
   }
   else
@@ -175,7 +187,6 @@ async function changeNoti()
 async function setEmail()
 {
   await postdata("https://fierce-harbor-59590.herokuapp.com/setEmail",{"setEmail":document.getElementById("tbEmail").value});
-  alert("Setting Complete");
 }
 
 function openFormNode() 
@@ -211,4 +222,9 @@ async function resetdevice()
   {
     alert("Please Enter Node Number");
   }
+}
+async function setLine()
+{
+  await postdata("https://fierce-harbor-59590.herokuapp.com/setTokenLine",{"setLineToken":document.getElementById("tbLineToken").value});
+  alert("Setting Complete");
 }

@@ -225,6 +225,6 @@ async function resetdevice()
 }
 async function setLine()
 {
-  await postdata("https://fierce-harbor-59590.herokuapp.com/setTokenLine",{"setLineToken":document.getElementById("tbLineToken").value});
+  await postdata("https://fierce-harbor-59590.herokuapp.com/setTokenLine",{"setTokenLine":document.getElementById("tbLineToken").value});
   alert("Setting Complete");
 }
